@@ -258,19 +258,17 @@ function showToast(message, type = 'success') {
     btn.disabled        = true;
     btnText.textContent = 'Sending…';
 
-    fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, subject, message })
-    }).then(() => {
+    const entry = { name, email, subject_type: subject, message, form_type: 'contact', submitted_at: new Date().toISOString() };
+    const existing = JSON.parse(localStorage.getItem('rotaract_contacts') || '[]');
+    existing.push(entry);
+    localStorage.setItem('rotaract_contacts', JSON.stringify(existing));
+
+    setTimeout(() => {
       showToast('Message received! We\'ll be in touch soon.', 'success');
       form.reset();
-    }).catch(() => {
-      showToast('Error sending message. Please try again.', 'error');
-    }).finally(() => {
       btn.disabled        = false;
       btnText.textContent = 'Send Message →';
-    });
+    }, 600);
 
   });
 })();
@@ -312,19 +310,17 @@ function showToast(message, type = 'success') {
     btn.disabled        = true;
     btnText.textContent = 'Submitting…';
 
-    fetch('/api/volunteer', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, phone, age, profession: how, why_join: msg, area })
-    }).then(() => {
+    const entry = { name, email, phone, age, profession: how, why_join: msg, area, form_type: 'volunteer', submitted_at: new Date().toISOString() };
+    const existing = JSON.parse(localStorage.getItem('rotaract_volunteers') || '[]');
+    existing.push(entry);
+    localStorage.setItem('rotaract_volunteers', JSON.stringify(existing));
+
+    setTimeout(() => {
       showToast('Application submitted! Welcome to the family.', 'success');
       form.reset();
-    }).catch(() => {
-      showToast('Error submitting application. Please try again.', 'error');
-    }).finally(() => {
       btn.disabled        = false;
       btnText.textContent = 'Submit Application';
-    });
+    }, 600);
 
 
   });
