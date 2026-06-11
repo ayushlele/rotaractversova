@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1781182314246,
+    "type": "contact",
+    "name": "Test User",
+    "email": "test@example.com",
+    "subject": "General Inquiry",
+    "message": "Hello from test.",
+    "date": "2026-06-11T12:51:54.246Z"
+  }
+]

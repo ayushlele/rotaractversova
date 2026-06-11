@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard — Rotaract Versova</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body { padding: 40px 20px; text-align: center; }
+        .admin-container { max-width: 800px; margin: 0 auto; text-align: left; }
+        #dashboard { display: none; }
+        .data-card { background: var(--bg-card); border: 1px solid var(--border); padding: 20px; border-radius: var(--radius); margin-bottom: 20px; }
+        .data-card h4 { color: var(--cranberry); margin-bottom: 8px; }
+        .data-card span { color: var(--text-dim); font-size: 0.85rem; }
+        .form-group { margin-bottom: 20px; text-align: left; }
+    </style>
+</head>
+<body>
+
+<div class="admin-container" id="loginView">
+    <h2 style="margin-bottom: 24px;">Admin Access</h2>
+    <div class="form-group">
+        <label for="adminPassword" class="form-label">Password</label>
+        <input type="password" id="adminPassword" class="form-input" placeholder="Enter password...">
+    </div>
+    <button class="btn btn-white" onclick="login()">Access Dashboard</button>
+    <p id="loginError" style="color: red; margin-top: 12px; display: none;">Invalid password.</p>
+</div>
+
+<div class="admin-container" id="dashboard">
+    <h2>Admin Dashboard</h2>
+    <button class="btn btn-outline" style="margin: 20px 0;" onclick="logout()">Logout</button>
+    
+    <h3 style="margin-top: 32px; border-bottom: 1px solid var(--border); padding-bottom: 12px;">Contact Messages</h3>
+    <div id="contactList"></div>
+
+    <h3 style="margin-top: 48px; border-bottom: 1px solid var(--border); padding-bottom: 12px;">Volunteer Applications</h3>
+    <div id="volunteerList"></div>
+</div>
+
+<script>
+    let token = localStorage.getItem('adminToken');
+    if (token) showDashboard();
+
+    async function login() {
+        const password = document.getElementById('adminPassword').value;
+        const res = await fetch('/api/auth', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password })
+        });
+        const data = await res.json();
+        if (data.success) {
+            localStorage.setItem('adminToken', data.token);
+            token = data.token;
+            showDashboard();
+        } else {
+            document.getElementById('loginError').style.display = 'block';
+        }
+    }
+
+    function logout() {
+        localStorage.removeItem('adminToken');
+        token = null;
+        document.getElementById('loginView').style.display = 'block';
+        document.getElementById('dashboard').style.display = 'none';
+    }
+
+    async function showDashboard() {
+        document.getElementById('loginView').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+        
+        const res = await fetch('/api/admin/data', {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        
+        if (res.status === 401) return logout();
+
+        const data = await res.json();
+        
+        const contactHtml = data.contacts.reverse().map(c => `
+            <div class="data-card">
+                <h4>${c.name} <span>(${c.email})</span></h4>
+                <p><strong>Subject:</strong> ${c.subject}</p>
+                <p style="margin-top: 8px;">${c.message}</p>
+                <span style="display:block; margin-top:12px;">${new Date(c.date).toLocaleString()}</span>
+            </div>
+        `).join('') || '<p>No messages yet.</p>';
+        document.getElementById('contactList').innerHTML = contactHtml;
+
+        const volHtml = data.volunteers.reverse().map(v => `
+            <div class="data-card">
+                <h4>${v.name} <span>(${v.email} | ${v.phone})</span></h4>
+                <p><strong>Age:</strong> ${v.age} | <strong>Area:</strong> ${v.area}</p>
+                <p><strong>Profession:</strong> ${v.profession}</p>
+                <p style="margin-top: 8px;"><strong>Why Join:</strong> ${v.why_join}</p>
+                <span style="display:block; margin-top:12px;">${new Date(v.date).toLocaleString()}</span>
+            </div>
+        `).join('') || '<p>No volunteers yet.</p>';
+        document.getElementById('volunteerList').innerHTML = volHtml;
+    }
+</script>
+
+</body>
+</html>
