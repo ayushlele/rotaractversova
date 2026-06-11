@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Projects — Rotaract Club of Mumbai Versova</title>
+  <meta name="description" content="Explore all 11+ service projects by Rotaract Club of Mumbai Versova — from food drives to clothes donation, sports, education and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="css/style.css?v=2" />
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/images/rotaract-logo.png" alt="Rotaract" class="nav-logo-img" />
+      <div class="nav-logo-text">
+        <strong>Rotaract Club</strong>
+        <span>Mumbai Versova</span>
+      </div>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="team.html">Team</a>
+      <a href="volunteer.html">Volunteer</a>
+      <a href="contact.html" class="btn btn-white nav-cta">Contact Us</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="projects.html" class="active">Projects</a>
+  <a href="team.html">Team</a>
+  <a href="volunteer.html">Volunteer</a>
+  <a href="contact.html">Contact Us</a>
+</div>
+
+<!-- ── PAGE HERO ── -->
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-content">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <span style="color:var(--white)">Projects</span>
+      </div>
+      <div class="badge" style="margin-bottom:20px;">Our Impact</div>
+      <h1>Projects &amp; <span class="gradient-text">Initiatives</span></h1>
+      <p style="max-width:600px; margin:16px auto 0; font-size:1.1rem;">Every project we undertake is a story of service, compassion, and community. Explore the work that defines who we are.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FILTER + GRID ── -->
+<section class="section" id="projects-section">
+  <div class="container">
+    <div class="filter-tabs" id="filterTabs">
+      <button class="filter-btn active" data-filter="all" id="filter-all">All Projects</button>
+      <button class="filter-btn" data-filter="community" id="filter-community">Community</button>
+      <button class="filter-btn" data-filter="environment" id="filter-environment">Environment</button>
+      <button class="filter-btn" data-filter="education" id="filter-education">Education</button>
+      <button class="filter-btn" data-filter="donation" id="filter-donation">Donation</button>
+      <button class="filter-btn" data-filter="food" id="filter-food">Food &amp; Nutrition</button>
+      <button class="filter-btn" data-filter="sports" id="filter-sports">Sports &amp; Fun</button>
+    </div>
+
+    <div class="projects-grid" id="projectsGrid">
+
+      <!-- 1. DG Meeting -->
+      <div class="project-item fade-in" data-cat="community" id="dg-meeting">
+        <div class="project-card" onclick="openModal('dg-meeting-modal')">
+          <div class="project-card-img-wrap">
+            <img src="assets/images/dg-meeting-1.jpg" alt="Meeting with District Governor" class="project-card-img" />
+            <span class="project-category-tag">Milestone</span>
+          </div>
+          <div class="project-card-body">
+            <h3>Meeting with District Governor</h3>
+            <p>Inspiring first meeting with the District Governor.</p>
+            <span class="read-more">Read full story →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. World Rotaract Day -->
+      <div class="project-item fade-in delay-1" data-cat="environment" id="world-rotaract-day">
+        <div class="project-card" onclick="openModal('wrd-modal')">
+          <div class="project-card-img-wrap">
+            <img src="assets/images/world-rotaract-day-1.jpg" alt="World Rotaract Day — Tree Planting" class="project-card-img" />
+            <span class="project-category-tag">Environment</span>
+          </div>
+          <div class="project-card-body">
+            <h3>Celebrating World Rotaract Day</h3>
+            <p>Planted saplings with kids for the environment.</p>
+            <span class="read-more">Read full story →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Annadaan Mahadaan -->
+      <div class="project-item fade-in delay-2" data-cat="food" id="project-annadaan">
+        <div class="project-card" onclick="openModal('annadaan-modal')">
+          <div class="project-card-img-wrap">
+            <img src="assets/images/annadaan-3.jpg" alt="Project Annadaan Mahadaan" class="project-card-img" />
+            <span class="project-category-tag">Food &amp; Nutrition</span>
+          </div>
+          <div class="project-card-body">
+            <h3>Project Annadaan Mahadaan</h3>
+            <p>Holi food distribution for local street kids.</p>
+            <span class="read-more">Read full story →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. StreetSmile PlayDate -->
+      <div class="project-item fade-in" data-cat="community">
+        <div class="project-card" onclick="openModal('playdate-modal')">
+          <div class="project-card-img-wrap">
+            <img src="assets/images/world-rotaract-day-2.jpg" alt="StreetSmile PlayDate" class="project-card-img" />
+            <span class="project-category-tag">Community</span>
+          </div>
+          <div class="project-card-body">
+            <h3>StreetSmile PlayDate</h3>
+            <p>Organized games and fitness for slum children.</p>
+            <span class="read-more">Read full story →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Movie Night -->
+      <div class="project-item fade-in delay-1" data-cat="community">
+        <div class="project-card" onclick="openModal('movie-night-modal')">
+          <div class="project-card-img-wrap">
+            <img src="assets/images/movie-night-1.jpg" alt="Movie Night" class="project-card-img" />
+            <span class="project-category-tag">Club Bonding</span>
+          </div>
+          <div class="project-card-body">
+            <h3>Movie Night</h3>
+            <p>Mini theatre movie screening and club bonding.</p>
+            <span class="read-more">Read full story →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Smile Saathi -->
+      <div class="project-item fade-in delay-2" data-cat="community">
+        <div class="project-card" onclick="openModal('smile-saathi-modal')">
+          <div class="project-card-img-wrap">
+            <img src="assets/images/aashray-1.jpg" alt="Smile Saathi" class="project-card-img" />
+            <span class="project-category-tag">Community</span>
+          </div>
+          <div class="project-card-body">
+            <h3>Smile Saathi</h3>
+            <p>Fun activities for kids with learning disabilities.</p>
+            <span class="read-more">Read full story →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Mini Olympics -->
+      <div class="project-item fade-in" data-cat="sports">
+        <div class="project-card" onclick="openModal('olympics-modal')">
+          <div class="project-card-img-wrap">
+            <img src="assets/images/olympics-2.jpg" alt="Mini Olympics 1.0" class="project-card-img" />
+            <span class="project-category-tag">Sports &amp; Fun</span>
+          </div>
+          <div class="project-card-body">
+            <h3>Mini Olympics 1.0</h3>
+            <p>Sports challenges, food stalls, and great energy.</p>
+            <span class="read-more">Read full story →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Project Aashray -->
+      <div class="project-item fade-in delay-1" data-cat="donation" id="project-aashray">
+        <div class="project-card" onclick="openModal('aashray-modal')">
+          <div class="project-card-img-wrap">
+            <img src="assets/images/aashray-2.jpg" alt="Project Aashray" class="project-card-img" />
+            <span class="project-category-tag">Donation</span>
+          </div>
+          <div class="project-card-body">
+            <h3>Project Aashray</h3>
+            <p>Donated over 6,000 clothes to tribal students.</p>
+            <span class="read-more">Read full story →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. Project Sahaara -->
+      <div class="project-item fade-in delay-2" data-cat="education">
+        <div class="project-card" onclick="openModal('sahaara-modal')">
+          <div class="project-card-img-wrap">
+            <img src="assets/images/saahara-1.png" alt="Project Sahaara" class="project-card-img" />
+            <span class="project-category-tag">Health</span>
+          </div>
+          <div class="project-card-body">
+            <h3>Project Sahaara (Gem Busters)</h3>
+            <p>Hygiene awareness and kit distribution for kids.</p>
+            <span class="read-more">Read full story →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. Project Udaan -->
+      <div class="project-item fade-in" data-cat="education">
+        <div class="project-card" onclick="openModal('udaan-modal')">
+          <div class="project-card-img-wrap">
+            <img src="assets/images/udaan-1.png" alt="Project Udaan" class="project-card-img" />
+            <span class="project-category-tag">Education</span>
+          </div>
+          <div class="project-card-body">
+            <h3>Project Udaan</h3>
+            <p>Motivational movie screening for underprivileged children.</p>
+            <span class="read-more">Read full story →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. Weekly Food Donation -->
+      <div class="project-item fade-in delay-1" data-cat="food" id="weekly-food">
+        <div class="project-card" onclick="openModal('weekly-food-modal')">
+          <div class="project-card-img-wrap">
+            <img src="assets/images/food-drive-1.png" alt="Weekly Food Donation" class="project-card-img" />
+            <span class="project-category-tag">Recurring</span>
+          </div>
+          <div class="project-card-body">
+            <h3>Weekly Food Donation (Every Sunday)</h3>
+            <p>Weekly Sunday food distribution in Azad Nagar.</p>
+            <span class="read-more">Read full story →</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── MODALS ── -->
+
+<!-- DG Meeting Modal -->
+<div class="modal-overlay" id="dg-meeting-modal" onclick="closeModalOutside(event, 'dg-meeting-modal')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('dg-meeting-modal')">✕</button>
+    <img src="assets/images/dg-certificate.jpg" alt="District Governor Meeting" class="modal-img" />
+    <div class="modal-body">
+      <div class="modal-category">Milestone</div>
+      <h2>Meeting with the District Governor</h2>
+      <p>We marked an important milestone by receiving our official certificate from District Governor <strong>Mr. Manish Motwani</strong>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- World Rotaract Day Modal -->
+<div class="modal-overlay" id="wrd-modal" onclick="closeModalOutside(event, 'wrd-modal')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('wrd-modal')">✕</button>
+    <img src="assets/images/world-rotaract-day-2.jpg" alt="World Rotaract Day" class="modal-img" />
+    <div class="modal-body">
+      <div class="modal-category">Environment · Tree Planting</div>
+      <h2>Celebrating World Rotaract Day</h2>
+      <p>We celebrated by planting saplings with enthusiastic local children to give back to the planet.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Annadaan Modal -->
+<div class="modal-overlay" id="annadaan-modal" onclick="closeModalOutside(event, 'annadaan-modal')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('annadaan-modal')">✕</button>
+    <img src="assets/images/annadaan-2.jpg" alt="Project Annadaan Mahadaan" class="modal-img" />
+    <div class="modal-body">
+      <div class="modal-category">Food &amp; Nutrition</div>
+      <h2>Project Annadaan Mahadaan</h2>
+      <p>We celebrated Holi by distributing wholesome South Indian meals to the street children of Azad Nagar.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PlayDate Modal -->
+<div class="modal-overlay" id="playdate-modal" onclick="closeModalOutside(event, 'playdate-modal')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('playdate-modal')">✕</button>
+    <img src="assets/images/world-rotaract-day-2.jpg" alt="StreetSmile PlayDate" class="modal-img" />
+    <div class="modal-body">
+      <div class="modal-category">Community Engagement</div>
+      <h2>StreetSmile PlayDate</h2>
+      <p>We spent a meaningful afternoon organizing engaging games and teaching basic fitness to children in a Vera Desai slum.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Movie Night Modal -->
+<div class="modal-overlay" id="movie-night-modal" onclick="closeModalOutside(event, 'movie-night-modal')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('movie-night-modal')">✕</button>
+    <img src="assets/images/movie-night-2.jpg" alt="Movie Night" class="modal-img" />
+    <div class="modal-body">
+      <div class="modal-category">Club Bonding</div>
+      <h2>Movie Night</h2>
+      <p>We bonded as a club over snacks and a private screening of Mean Girls.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Smile Saathi Modal -->
+<div class="modal-overlay" id="smile-saathi-modal" onclick="closeModalOutside(event, 'smile-saathi-modal')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('smile-saathi-modal')">✕</button>
+    <img src="assets/images/aashray-1.jpg" alt="Smile Saathi" class="modal-img" />
+    <div class="modal-body">
+      <div class="modal-category">Community</div>
+      <h2>Smile Saathi</h2>
+      <p>We organized a fun-filled dance party and games for children with learning disabilities at <strong>Anandi Special School</strong>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Mini Olympics Modal -->
+<div class="modal-overlay" id="olympics-modal" onclick="closeModalOutside(event, 'olympics-modal')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('olympics-modal')">✕</button>
+    <img src="assets/images/olympics-1.jpg" alt="Mini Olympics" class="modal-img" />
+    <div class="modal-body">
+      <div class="modal-category">Sports &amp; Fun</div>
+      <h2>Mini Olympics 1.0</h2>
+      <p>We hosted an energetic sports event featuring three main challenges.</p>
+      <ul style="margin:16px 0; padding-left:20px; display:flex; flex-direction:column; gap:10px;">
+        <li style="color:var(--muted);"><strong style="color:var(--white);">Three in One Challenge</strong></li>
+        <li style="color:var(--muted);"><strong style="color:var(--white);">Triple Turf Cup</strong></li>
+        <li style="color:var(--muted);"><strong style="color:var(--white);">Speed Shuffle</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Aashray Modal -->
+<div class="modal-overlay" id="aashray-modal" onclick="closeModalOutside(event, 'aashray-modal')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('aashray-modal')">✕</button>
+    <img src="assets/images/aashray-1.jpg" alt="Project Aashray" class="modal-img" />
+    <div class="modal-body">
+      <div class="modal-category">Donation</div>
+      <h2>Project Aashray</h2>
+      <p>We collected and distributed over 6,000 articles of clothing to 1,105 students at a tribal school in Parali.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Sahaara Modal -->
+<div class="modal-overlay" id="sahaara-modal" onclick="closeModalOutside(event, 'sahaara-modal')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('sahaara-modal')">✕</button>
+    <img src="assets/images/saahara-1.png" alt="Project Sahaara" class="modal-img" />
+    <div class="modal-body">
+      <div class="modal-category">Health &amp; Hygiene</div>
+      <h2>Project Sahaara (Gem Busters)</h2>
+      <p>We conducted interactive hygiene awareness activities for children and distributed comprehensive personal care kits.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Udaan Modal -->
+<div class="modal-overlay" id="udaan-modal" onclick="closeModalOutside(event, 'udaan-modal')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('udaan-modal')">✕</button>
+    <img src="assets/images/udaan-2.png" alt="Project Udaan" class="modal-img" />
+    <div class="modal-body">
+      <div class="modal-category">Education</div>
+      <h2>Project Udaan</h2>
+      <p>We hosted an inspiring movie screening with snacks for underprivileged children at <strong>Gundecha Academy</strong>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Weekly Food Modal -->
+<div class="modal-overlay" id="weekly-food-modal" onclick="closeModalOutside(event, 'weekly-food-modal')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('weekly-food-modal')">✕</button>
+    <img src="assets/images/food-drive-2.png" alt="Weekly Food Donation" class="modal-img" />
+    <div class="modal-body">
+      <div class="modal-category">Recurring · Every Sunday</div>
+      <h2>Weekly Food Donation</h2>
+      <p>Every Sunday, we partner with Rotary of Mumbai Versova to distribute food and treats to children in the Azad Nagar slums.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── CTA ── -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Want to Be Part of the <span class="accent">Next Project?</span></h2>
+      <p>Join our growing family of changemakers and help us create even more impact across Mumbai.</p>
+      <div class="cta-actions">
+        <a href="volunteer.html" class="btn btn-primary">Volunteer With Us</a>
+        <a href="contact.html" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <img src="assets/images/rotaract-logo.png" alt="Rotaract" style="width:32px;height:32px;" />
+          <div class="nav-logo-text"><strong>Rotaract Club</strong><span>Mumbai Versova</span></div>
+        </div>
+        <p>A Rotaract club under Rotary International District 3141, dedicated to empowering youth through service, leadership, and fellowship in Mumbai Versova.</p>
+        <div class="footer-social" style="margin-top:24px;">
+          <a href="https://www.instagram.com/rotaract_versova" target="_blank" class="social-link"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="mailto:rotaractversova@gmail.com" class="social-link"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="volunteer.html">Volunteer</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Projects</h5>
+        <ul>
+          <li><a href="#project-aashray">Project Aashray</a></li>
+          <li><a href="#project-annadaan">Annadaan Mahadaan</a></li>
+          <li><a href="#weekly-food">Weekly Food Drives</a></li>
+          <li><a href="#">Smile Saathi</a></li>
+          <li><a href="#">Project Udaan</a></li>
+          <li><a href="#">Mini Olympics</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Rotaract Club of Mumbai Versova · District 3141. Made with <span>love</span> in Mumbai.</p>
+      <p style="font-size:0.8rem;">Service Above Self</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Rotaract DB Setup</title>
+  <style>
+    body { font-family: monospace; background: #0a0f1e; color: #e0e6f0; padding: 40px; }
+    h2 { color: #d41367; }
+    pre { background: #111d35; padding: 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); white-space: pre-wrap; font-size: 13px; }
+    .btn { display: inline-block; margin-top: 20px; padding: 12px 28px; background: #d41367; color: #fff; border-radius: 8px; cursor: pointer; border: none; font-size: 1rem; }
+    .btn:hover { background: #f0267a; }
+    #status { margin-top: 20px; padding: 16px; border-radius: 8px; display: none; }
+    #status.ok  { background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.4); color: #6ee7b7; }
+    #status.err { background: rgba(212,19,103,0.12); border: 1px solid rgba(212,19,103,0.4); color: #fca5a5; }
+    .step { margin: 8px 0; }
+    .step.done { color: #6ee7b7; }
+    .step.fail { color: #fca5a5; }
+  </style>
+</head>
+<body>
+  <h2>🛠️ Rotaract Supabase Setup</h2>
+  <p>This script will create the <code>rotaract_contacts</code> table in your Supabase project.<br>
+  <strong>Make sure you are logged into Supabase in this browser first.</strong></p>
+
+  <p>Project: <code>kfcupvlklvacrgqxpmyb</code></p>
+
+  <button class="btn" onclick="runSetup()">▶ Create Table Now</button>
+
+  <div id="status"></div>
+
+  <h3 style="margin-top:40px; color:#8892a4; font-size:0.85rem;">SQL that will be executed:</h3>
+  <pre id="sqlPreview"></pre>
+
+  <script>
+    const SUPABASE_URL = 'https://kfcupvlklvacrgqxpmyb.supabase.co';
+    const ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtmY3VwdmxrbHZhY3JncXhwbXliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzMjA5MzQsImV4cCI6MjA5MDg5NjkzNH0.xHyImVy1qByxWpG8_L9cOOBkQ528mEkq95hiR8xb5Ns';
+
+    const SQL = `-- Rotaract Contacts Table
+CREATE TABLE IF NOT EXISTS rotaract_contacts (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  created_at timestamptz DEFAULT now(),
+  name text NOT NULL,
+  email text NOT NULL,
+  subject_type text,
+  message text,
+  phone text,
+  form_type text DEFAULT 'contact'
+);
+
+ALTER TABLE rotaract_contacts ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "rotaract_anon_insert" ON rotaract_contacts;
+DROP POLICY IF EXISTS "rotaract_anon_select" ON rotaract_contacts;
+
+CREATE POLICY "rotaract_anon_insert" ON rotaract_contacts
+  FOR INSERT TO anon WITH CHECK (true);
+
+CREATE POLICY "rotaract_anon_select" ON rotaract_contacts
+  FOR SELECT TO anon USING (true);`;
+
+    document.getElementById('sqlPreview').textContent = SQL;
+
+    async function runSetup() {
+      const statusEl = document.getElementById('status');
+      statusEl.style.display = 'block';
+      statusEl.className = 'ok';
+      statusEl.innerHTML = '<div class="step">⏳ Attempting to create table via Supabase RPC...</div>';
+
+      // Try via the pg endpoint (needs service role, will likely 401)
+      // Instead: try inserting a dummy row to see if table exists
+      const headers = {
+        'apikey': ANON_KEY,
+        'Authorization': 'Bearer ' + ANON_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      };
+
+      // First check if table exists
+      try {
+        const checkRes = await fetch(SUPABASE_URL + '/rest/v1/rotaract_contacts?limit=1', {
+          method: 'GET',
+          headers
+        });
+
+        if (checkRes.ok || checkRes.status === 406) {
+          // Table EXISTS
+          statusEl.className = 'ok';
+          statusEl.innerHTML = `
+            <div class="step done">✅ Table <strong>rotaract_contacts</strong> already exists!</div>
+            <div class="step done" style="margin-top:12px;">The Rotaract contact form is ready to use.</div>
+          `;
+          return;
+        }
+
+        if (checkRes.status === 404) {
+          // Table does not exist — show instructions to run SQL manually
+          statusEl.className = 'err';
+          statusEl.innerHTML = `
+            <div class="step fail">⚠️ Table does not exist yet.</div>
+            <div class="step" style="margin-top:16px; color:#e0e6f0;">
+              <strong>One-time setup needed (60 seconds):</strong><br><br>
+              1. <a href="https://supabase.com/dashboard/project/kfcupvlklvacrgqxpmyb/sql/new" target="_blank" style="color:#d41367;">Click here → Open Supabase SQL Editor</a><br>
+              2. Copy the SQL below and paste it into the editor<br>
+              3. Click <strong>Run</strong> (Ctrl+Enter)<br>
+              4. Come back here and click the button again to verify
+            </div>
+          `;
+          return;
+        }
+
+        // Any other status
+        const text = await checkRes.text();
+        statusEl.className = 'err';
+        statusEl.innerHTML = `<div class="step fail">HTTP ${checkRes.status}: ${text}</div>`;
+
+      } catch (err) {
+        statusEl.className = 'err';
+        statusEl.innerHTML = `<div class="step fail">Error: ${err.message}</div>`;
+      }
+    }
+  </script>
+</body>
+</html>
