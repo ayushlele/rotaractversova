@@ -3,5 +3,6 @@
   "buildCommand": "",
   "installCommand": "",
   "framework": null,
-  "outputDirectory": "."
+  "outputDirectory": ".",
+  "trailingSlash": false
 }

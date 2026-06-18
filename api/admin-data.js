@@ -21,11 +21,20 @@ module.exports = async function handler(req, res) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
-  const contactsRaw = await kvCommand('LRANGE', 'contacts', '0', '-1');
-  const volunteersRaw = await kvCommand('LRANGE', 'volunteers', '0', '-1');
+  try {
+    const contactsRaw = await kvCommand('LRANGE', 'contacts', '0', '-1');
+    const volunteersRaw = await kvCommand('LRANGE', 'volunteers', '0', '-1');
 
-  const contacts = (contactsRaw.result || []).map(item => JSON.parse(item));
-  const volunteers = (volunteersRaw.result || []).map(item => JSON.parse(item));
+    const contacts = (contactsRaw.result || []).map(item => {
+      try { return JSON.parse(item); } catch(e) { return null; }
+    }).filter(Boolean);
 
-  res.json({ contacts, volunteers });
+    const volunteers = (volunteersRaw.result || []).map(item => {
+      try { return JSON.parse(item); } catch(e) { return null; }
+    }).filter(Boolean);
+
+    res.json({ contacts, volunteers });
+  } catch (err) {
+    res.status(500).json({ error: 'KV fetch failed', detail: err.message });
+  }
 };
