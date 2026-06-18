@@ -7,7 +7,7 @@
   <meta name="description" content="Explore all 11+ service projects by Rotaract Club of Mumbai Versova — from food drives to clothes donation, sports, education and more." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="css/style.css?v=3" />
+  <link rel="stylesheet" href="css/style.css?v=4" />
 </head>
 <body>
 
@@ -70,6 +70,7 @@
       <button class="filter-btn" data-filter="donation" id="filter-donation">Donation</button>
       <button class="filter-btn" data-filter="food" id="filter-food">Food &amp; Nutrition</button>
       <button class="filter-btn" data-filter="sports" id="filter-sports">Sports &amp; Fun</button>
+      <button class="filter-btn" data-filter="health" id="filter-health">Health</button>
     </div>
 
     <div class="projects-grid" id="projectsGrid">
@@ -239,6 +240,21 @@
         </div>
       </div>
 
+      <!-- 12. Hygiene Donation Drive -->
+      <div class="project-item fade-in delay-2" data-cat="health" id="hygiene-drive">
+        <div class="project-card" onclick="openModal('hygiene-drive-modal')">
+          <div class="project-card-img-wrap">
+            <img src="assets/images/hygiene-drive-1.jpg" alt="Hygiene Donation Drive" class="project-card-img" />
+            <span class="project-category-tag">Health</span>
+          </div>
+          <div class="project-card-body">
+            <h3>Hygiene Donation Drive</h3>
+            <p>Hygiene awareness and kit distribution for 60 students.</p>
+            <span class="read-more">Read full story →</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -389,6 +405,20 @@
       <div class="modal-category">Recurring · Every Sunday</div>
       <h2>Weekly Food Donation</h2>
       <p>Every Sunday, we partner with Rotary of Mumbai Versova to distribute food and treats to children in the Azad Nagar slums.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Hygiene Drive Modal -->
+<div class="modal-overlay" id="hygiene-drive-modal" onclick="closeModalOutside(event, 'hygiene-drive-modal')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('hygiene-drive-modal')">✕</button>
+    <img src="assets/images/hygiene-drive-3.jpg" alt="Hygiene Donation Drive" class="modal-img" />
+    <div class="modal-body">
+      <div class="modal-category">Health</div>
+      <h2>Hygiene Donation Drive</h2>
+      <p>As part of our commitment to community service and youth empowerment, the Rotaract of Versova led and conducted a hygiene awareness and kit distribution drive for around 60 students. We also conducted fun activities like the pepper soap experiment.</p>
+      <p>This project showed the Rotaract's perseverance and dedication to make an impact in the newer generations and more to come.</p>
     </div>
   </div>
 </div>
